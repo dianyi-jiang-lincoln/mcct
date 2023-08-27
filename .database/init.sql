@@ -7,13 +7,10 @@ USE mcct;
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
--- Create ENUM Type
-CREATE TYPE user_type AS ENUM ("admin", "manager", "reader");
-CREATE TYPE post_type AS ENUM ("news", "event", "ad");
-
 -- Create Table
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY AUTO_INCREMENT = 10000,
+    id SERIAL PRIMARY KEY AUTO_INCREMENT,
+    role ENUM ("admin", "manager", "user") DEFAULT "user",
     username VARCHAR(255) UNIQUE NOT NULL,
     firstname VARCHAR(255),
     lastname VARCHAR(255),
@@ -22,28 +19,30 @@ CREATE TABLE users (
     address VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL, -- hashed password
     avatar VARCHAR(255),
-    role user_type NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_login TIMESTAMP
 );
 
+ALTER TABLE users AUTO_INCREMENT = 10000;
+
 -- Create Table
 CREATE TABLE categories (
-    id SERIAL PRIMARY KEY AUTO_INCREMENT = 10000,
+    id SERIAL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) UNIQUE NOT NULL,
     description TEXT
 );
 
+ALTER TABLE categories AUTO_INCREMENT = 10000;
+
 -- Create Table
 CREATE TABLE posts (
-    id SERIAL PRIMARY KEY AUTO_INCREMENT = 10000,
+    id SERIAL PRIMARY KEY AUTO_INCREMENT,
     is_sticky TINYINT(1) NOT NULL DEFAULT 0,
     thumbnail_url VARCHAR(255),
     title VARCHAR(255) NOT NULL,
-    subtitle TEXT,
-    content TEXT,
-    access_level user_type DEFAULT "reader",
-    type post_type NOT NULL,
+    type ENUM ("news", "event", "ad"),
+    preview TEXT,
+    content TEXT, -- HTML
     address VARCHAR(255),
     phone_number VARCHAR(20),
     category_id INT REFERENCES categories(id),
@@ -51,67 +50,69 @@ CREATE TABLE posts (
     visible_start TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     visible_end TIMESTAMP DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT NULL
 );
+
+ALTER TABLE posts AUTO_INCREMENT = 10000;
 
 -- Create Comment Table
 CREATE TABLE comments (
-    id SERIAL PRIMARY KEY AUTO_INCREMENT = 10000,
+    id SERIAL PRIMARY KEY AUTO_INCREMENT,
     content TEXT NOT NULL,
-    reply_to INT,
+    post_id INT REFERENCES posts(id),
+    reply_to INT, -- comment id
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT NULL
 );
 
-SET FOREIGN_KEY_CHECKS = 1;
+ALTER TABLE comments AUTO_INCREMENT = 10000;
 
--- Insert mock data into users table
-INSERT INTO users (username, firstname, lastname, phone_number, email, address, password, avatar, role)
-VALUES
-    ("adminuser", "Admin", "User", "1234567890", "admin@example.com", "123 Admin St", "hashed_password", "avatar_url", "admin"),
-    ("manageruser", "Manager", "User", "9876543210", "manager@example.com", "456 Manager Ave", "hashed_password", "avatar_url", "manager"),
-    ("readeruser", "Reader", "User", "5555555555", "reader@example.com", "789 Reader Rd", "hashed_password", "avatar_url", "reader"),
-    ("user1", "John", "Doe", "1111111111", "user1@example.com", "123 Main St", "hashed_password", "avatar_url", "reader"),
-    ("user2", "Jane", "Smith", "2222222222", "user2@example.com", "456 Elm Ave", "hashed_password", "avatar_url", "reader"),
-    ("user3", "Michael", "Johnson", "3333333333", "user3@example.com", "789 Oak Rd", "hashed_password", "avatar_url", "reader"),
-    ("user4", "Emily", "Williams", "4444444444", "user4@example.com", "567 Pine St", "hashed_password", "avatar_url", "reader"),
-    ("user5", "David", "Brown", "5555555555", "user5@example.com", "890 Maple Ave", "hashed_password", "avatar_url", "reader"),
-    ("user6", "Sarah", "Davis", "6666666666", "user6@example.com", "234 Cedar Rd", "hashed_password", "avatar_url", "reader"),
-    ("user7", "Jessica", "Miller", "7777777777", "user7@example.com", "678 Birch St", "hashed_password", "avatar_url", "reader"),
-    ("user8", "Kevin", "Wilson", "8888888888", "user8@example.com", "123 Pine Ave", "hashed_password", "avatar_url", "reader"),
-    ("user9", "Amanda", "Martinez", "9999999999", "user9@example.com", "456 Oak St", "hashed_password", "avatar_url", "reader"),
-    ("user10", "Daniel", "Garcia", "1010101010", "user10@example.com", "789 Elm Ave", "hashed_password", "avatar_url", "reader");
+SET FOREIGN_KEY_CHECKS = 1;
 
 -- Insert mock data into categories table
 INSERT INTO categories (name, description)
 VALUES
-    ("News", "Latest news and updates"),
-    ("Events", "Upcoming events and activities"),
-    ("Ads", "Advertisements and promotions");
+    ("Technology", "Stay updated with the latest tech trends."),
+    ("Food", "Explore mouthwatering culinary delights."),
+    ("Travel", "Discover amazing destinations around the world."),
+    ("Health", "Tips for maintaining a healthy lifestyle."),
+    ("Entertainment", "Entertainment news and updates.");
+
+-- Insert mock data into users table
+INSERT INTO users (role, username, firstname, lastname, phone_number, email, address, password, avatar, last_login)
+VALUES
+    ("admin", "adminuser", "Admin", "User", "1234567890", "admin@example.com", "123 Admin St", "hashed_password", "avatar_url", NOW()),
+    ("manager", "manageruser", "Manager", "User", "9876543210", "manager@example.com", "456 Manager Ave", "hashed_password", "avatar_url", NOW()),
+    ("user", "readeruser", "Reader", "User", "5555555555", "reader@example.com", "789 Reader Rd", "hashed_password", "avatar_url", NOW()),
+    ("user", "user1", "John", "Doe", "1111111111", "user1@example.com", "123 Main St", "hashed_password", "avatar_url", NOW()),
+    ("user", "user2", "Jane", "Smith", "2222222222", "user2@example.com", "456 Elm Ave", "hashed_password", "avatar_url", NOW()),
+    ("user", "user3", "Michael", "Johnson", "3333333333", "user3@example.com", "789 Oak Rd", "hashed_password", "avatar_url", NOW()),
+    ("user", "user4", "Emily", "Williams", "4444444444", "user4@example.com", "567 Pine St", "hashed_password", "avatar_url", NOW()),
+    ("user", "user5", "David", "Brown", "5555555555", "user5@example.com", "890 Maple Ave", "hashed_password", "avatar_url", NOW()),
+    ("user", "user6", "Sarah", "Davis", "6666666666", "user6@example.com", "234 Cedar Rd", "hashed_password", "avatar_url", NOW()),
+    ("user", "user7", "Jessica", "Miller", "7777777777", "user7@example.com", "678 Birch St", "hashed_password", "avatar_url", NOW());
 
 -- Insert mock data into posts table
-INSERT INTO posts (is_sticky, thumbnail_url, title, subtitle, content, access_level, type, address, phone_number, category_id, created_by, visible_start, visible_end)
+INSERT INTO posts (is_sticky, thumbnail_url, title, type, preview, content, address, phone_number, category_id, created_by, visible_start)
 VALUES
-    (1, "thumbnail_url_1", "Important News", "Breaking news!", "This is an important news article.", "admin", "news", "123 News St", "1112223333", 10001, 10001, NOW()),
-    (0, "thumbnail_url_2", "Upcoming Event", "Join us for an exciting event!", "Get ready for a fantastic event.", "manager", "event", "456 Event Ave", "4445556666", 10002, 10002, NOW() + INTERVAL 1 DAY),
-    (0, "thumbnail_url_3", "Special Promotion", "Limited-time offer!", "Check out our amazing deals.", "reader", "ad", "789 Promo Rd", "7778889999", 10003, 10003, NOW() + INTERVAL 2 DAYS),
-    (0, "thumbnail_url_4", "Weekly Recap", "A summary of the week", "Catch up on what happened this week.", "reader", "news", "123 Recap St", "1112223333", 10001, 10003, NOW() - INTERVAL 5 DAYS),
-    (0, "thumbnail_url_5", "Art Exhibition", "Celebrate creativity", "Join us for an art exhibition showcasing local talents.", "manager", "event", "456 Art Ave", "4445556666", 10002, 10002, NOW() + INTERVAL 3 DAYS),
-    (0, "thumbnail_url_6", "New Product Launch", "Introducing our latest product", "Discover our innovative new product designed to enhance your life.", "reader", "ad", "789 Product Rd", "7778889999", 10003, 10001, NOW() + INTERVAL 2 DAYS),
-    (0, "thumbnail_url_7", "Sports Tournament", "Cheer for your favorite team", "Join us for an exciting sports tournament with teams from around the region.", "manager", "event", "234 Sports St", "3334445555", 10002, 10002, NOW() - INTERVAL 5 DAYS, NOW() + INTERVAL 6 DAYS),
-    (0, "thumbnail_url_8", "Limited-time Sale", "Huge discounts for a limited time", "Don\'t miss out on our special sale offering big discounts on selected items.", "reader", "ad", "567 Sale Ave", "6667778888", 10003, 10003, NOW() + INTERVAL 7 DAYS),
-    (0, "thumbnail_url_9", "Health Workshop", "Learn about healthy living", "Join us for a workshop where experts will share tips for a healthier lifestyle.", "manager", "event", "890 Health Rd", "9990001111", 10002, 10001, NOW() + INTERVAL 10 DAYS),
-    (0, "thumbnail_url_10", "Book Launch", "Discover a new literary masterpiece", "Be the first to experience the launch of a highly anticipated novel.", "reader", "event", "123 Book St", "2223334444", 10002, 10002, NOW() + INTERVAL 12 DAYS),
-    (0, "thumbnail_url_11", "Tech Conference", "Explore the latest tech trends", "Tech enthusiasts can\'t afford to miss this conference featuring cutting-edge innovations.", "manager", "event", "456 Tech Ave", "5556667777", 10002, 10003, NOW() + INTERVAL 15 DAYS),
-    (0, "thumbnail_url_12", "Summer Sale", "Beat the heat with hot deals", "Stay cool and enjoy summer savings on a wide range of products.", "reader", "ad", "789 Summer Rd", "8889990000", 10003, 10001, NOW() + INTERVAL 18 DAYS),
-    (0, "thumbnail_url_13", "Charity Run", "Run for a cause", "Participate in a charity run to support a noble cause and make a difference.", "manager", "event", "234 Charity St", "1112223333", 10002, 10002, NOW() + INTERVAL 20 DAYS);
-
+    (1, "thumbnail_url_1", "Tech News", "news", "Stay updated with the latest tech news.", "Read about the latest innovations in the tech industry.", "123 Tech St", "1112223333", 10001, 10001, NOW()),
+    (0, "thumbnail_url_2", "Food Festival", "event", "Experience a culinary extravaganza!", "Indulge in a variety of delicious dishes at the food festival.", "456 Food Ave", "4445556666", 10002, 10002, NOW() - INTERVAL 2 DAY),
+    (0, "thumbnail_url_3", "Travel Guide", "news", "Plan your next adventure with our travel guide.", "Explore breathtaking destinations and travel tips.", "789 Travel Rd", "7778889999", 10003, 10001, NOW() - INTERVAL 4 DAY),
+    (0, 'thumbnail_url_4', 'Gaming Tournament', 'event', 'Join the ultimate gaming competition!', 'Compete against the best gamers in town and win exciting prizes.', '123 Game St', '1112223333', 10005, 10005, NOW() + INTERVAL 1 DAY),
+    (0, 'thumbnail_url_5', 'Healthy Recipes', 'news', 'Discover delicious and nutritious recipes.', 'Learn how to prepare healthy meals for you and your family.', '456 Kitchen Ave', '4445556666', 10002, 10006, NOW() + INTERVAL 3 DAY),
+    (0, 'thumbnail_url_6', 'New Movie Release', 'news', 'Get ready for an amazing cinematic experience!', 'Check out the latest blockbuster hitting theaters near you.', '789 Cinema Rd', '7778889999', 10005, 10005, NOW() - INTERVAL 2 DAY),
+    (0, 'thumbnail_url_7', 'Fitness Workshop', 'event', 'Achieve your fitness goals with expert guidance.', 'Join our fitness workshop to learn effective workout routines.', '234 Gym St', '3334445555', 10004, 10004, NOW() + INTERVAL 5 DAY),
+    (0, 'thumbnail_url_8', 'Local Art Exhibition', 'event', 'Celebrate local artists and their incredible work.', 'Explore a diverse collection of artworks from talented local artists.', '567 Art Center', '6667778888', 10001, 10001, NOW() + INTERVAL 7 DAY),
+    (0, 'thumbnail_url_9', 'Home Decor Tips', 'news', 'Transform your living space with these decor ideas.', 'Learn how to create a stylish and cozy home environment.', '890 Home Rd', '8889990000', 10002, 10002, NOW() + INTERVAL 9 DAY),
+    (0, 'thumbnail_url_10', 'Music Concert', 'event', 'Get ready for a night of unforgettable music!', 'Experience live performances by your favorite artists at our music concert.', '123 Concert St', '2223334444', 10005, 10005, NOW() + INTERVAL 11 DAY),
+    (0, 'thumbnail_url_11', 'Fashion Trends', 'news', 'Stay in vogue with the latest fashion trends.', 'Discover the hottest fashion trends for the upcoming season.', '456 Fashion Ave', '5556667777', 10001, 10001, NOW() + INTERVAL 13 DAY),
+    (0, 'thumbnail_url_12', 'Cooking Class', 'event', 'Enhance your culinary skills with our cooking class.', 'Learn how to prepare exquisite dishes from professional chefs.', '789 Culinary Rd', '9990001111', 10002, 10002, NOW() + INTERVAL 15 DAY),
+    (0, 'thumbnail_url_13', 'Pet Adoption Drive', 'event', 'Find a furry friend to bring home!', 'Join our pet adoption event and give a loving home to a shelter animal.', '234 Pet Shelter', '1112223333', 10004, 10004, NOW() + INTERVAL 17 DAY);
 -- Insert mock data into comments table
-INSERT INTO comments (content, reply_to)
+INSERT INTO comments (content, post_id)
 VALUES
-    ("Great news!", NULL),
-    ("Looking forward to it!", NULL),
-    ("I can\'t wait!", NULL),
-    ("Will there be food?", 10001),
-    ("Yes, there will be snacks.", 10004),
-    ("Awesome!", NULL);
+    ("Great article!", 10001),
+    ("Looking forward to it!", 10002),
+    ("I can\'t wait to travel!", 10003),
+    ("Are there any travel discounts?", 10003),
+    ("Yes, there are special offers for our readers.", 10001);
