@@ -1,0 +1,28 @@
+<!--
+###############################
+### Dianyi Jiang            ###
+###############################
+-->
+
+{% extends "base.html" %}
+
+<!-- title -->
+
+{% block title %} {% endblock %}
+
+<!-- content -->
+
+{% block content %}
+<div>home page</div>
+<h1>Click the Button to Send a Notification</h1>
+<button id="notificationButton">Send Notification</button>
+
+<!-- return redirect(url_for(f"admin.dashboard")) -->
+
+<form method="get" action="{{ url_for('admin.dashboard') }}">
+  <button type="submit">Send Flash Message</button>
+</form>
+
+<script></script>
+
+{% endblock %}
