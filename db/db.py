@@ -18,19 +18,18 @@ DB_CONFIG = {
     "host": connect.dbhost,
     "port": connect.dbport,
     "database": connect.dbname,
-    "auth_plugin": "mysql_native_password"
+    "auth_plugin": "mysql_native_password",
 }
 
 ##################################################
 
+
 def sql_exec_with_file(path):
-    connection = mysql.connector.connect(
-        **DB_CONFIG
-    )
+    connection = mysql.connector.connect(**DB_CONFIG)
     cursor = connection.cursor()
 
     try:
-        with open(path, 'r') as sql_file:
+        with open(path, "r") as sql_file:
             re_create_schema = (
                 f"DROP SCHEMA IF EXISTS {connect.dbname};"
                 f"CREATE SCHEMA {connect.dbname};"
@@ -51,10 +50,9 @@ def sql_exec_with_file(path):
         cursor.close()
         connection.close()
 
+
 def sql_exec_with_connection(query, params=None, callback=None):
-    connection = mysql.connector.connect(
-        **DB_CONFIG
-    )
+    connection = mysql.connector.connect(**DB_CONFIG)
 
     if not connection or not connection.is_connected():
         raise mysql.connector.Error("connot connect to database")
@@ -86,10 +84,13 @@ def sql_exec_with_connection(query, params=None, callback=None):
         cursor.close()
         connection.close()
 
+
 def sql_exec(query, params=None, callback=None):
     return sql_exec_with_connection(query, params=params, callback=callback)
 
+
 ##################################################
+
 
 # output: `[{"name": ""}, {"title2": ""},]`
 def get_mapped_titles_rows(cursor, print=True):
@@ -102,12 +103,15 @@ def get_mapped_titles_rows(cursor, print=True):
     if len(rows) == 0:
         rows = []
 
-    output = [{titles[i]: rows[j][i] for i in range(len(titles))} for j in range(len(rows))]
+    output = [
+        {titles[i]: rows[j][i] for i in range(len(titles))} for j in range(len(rows))
+    ]
 
     if print:
         debug_print_result(output, icon="⬇️ ")
 
     return output
+
 
 # output: `{"name": ""}`
 def get_first_mapped_title_row(cursor):
@@ -119,7 +123,9 @@ def get_first_mapped_title_row(cursor):
     debug_print_result(output, icon="⬇️ ")
     return output
 
+
 ##################################################
+
 
 def get_rows(cursor):
     rows = cursor.fetchall()
@@ -133,6 +139,7 @@ def get_rows(cursor):
     debug_print_result(output, icon="⬇️ ")
 
     return output
+
 
 # output:
 # {titles: ["name", ""], rows: [("aaa", ""), ("bbb", ""]}
@@ -154,18 +161,36 @@ def get_titles_rows(cursor):
 
     return output
 
+
 ##################################################
+
 
 def get_lastrowid(cursor):
     lastrowid = cursor.lastrowid
     debug_print_result(lastrowid, icon="⬇️ ")
     return lastrowid
 
+
 ##################################################
 
-def debug_print_result(content, icon="▶️"):
+
+def debug_print_result(result, icon="▶️"):
     if ENV == "DEVELOPMENT":
-        print(f"{icon} {content}")
+        if type(result) == list:
+            for line in result:
+                print(f"{icon}", end="")
+                if type(line) == dict:
+                    for k, v in line.items():
+                        print(f"\t{k:>12}: {v}")
+                else:
+                    print(f"{icon} {line}")
+        elif type(result) == dict:
+            print(f"{icon}", end="")
+            for k, v in result.items():
+                print(f"\t{k:>12}: {v}")
+        else:
+            print(f"{icon} {result}")
+
 
 ##################################################
 

@@ -31,17 +31,23 @@ app.register_blueprint(user, url_prefix="/")
 
 currentUser = None
 
+
 @app.route("/")
 def home():
+    # db.sql_exec_with_connection(query=query.test(), callback=db.get_mapped_titles_rows)
+    db.sql_exec_with_connection(query=query.test(), callback=db.get_mapped_titles_rows)
     return render_template(f"index.html")
+
 
 @app.route("/admin")
 def admin():
     return redirect(url_for(f"admin.dashboard"))
 
+
 @app.route("/staff")
 def staff():
     return redirect(url_for(f"staff.dashboard"))
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -62,11 +68,13 @@ def login():
         flash(f"password is not valid, please try again.", "error")
         return render_template(f"login.html")
 
+
 @app.route("/logout")
 def logout():
     currentUser = None
     clear_session()
     return redirect(url_for("login"))
+
 
 @app.route("/github_webhook", methods=["GET", "POST"])
 def webhook():
