@@ -104,8 +104,7 @@ VALUES
     (0, "thumbnail_url_10", "Book Launch", "Discover a new literary masterpiece", "Be the first to experience the launch of a highly anticipated novel.", "reader", "event", "123 Book St", "2223334444", 10002, 10002, NOW() + INTERVAL 12 DAYS),
     (0, "thumbnail_url_11", "Tech Conference", "Explore the latest tech trends", "Tech enthusiasts can\'t afford to miss this conference featuring cutting-edge innovations.", "manager", "event", "456 Tech Ave", "5556667777", 10002, 10003, NOW() + INTERVAL 15 DAYS),
     (0, "thumbnail_url_12", "Summer Sale", "Beat the heat with hot deals", "Stay cool and enjoy summer savings on a wide range of products.", "reader", "ad", "789 Summer Rd", "8889990000", 10003, 10001, NOW() + INTERVAL 18 DAYS),
-    (0, "thumbnail_url_13", "Charity Run", "Run for a cause", "Participate in a charity run to support a noble cause and make a difference.", "manager", "event", "234 Charity St", "1112223333", 10002, 10002, NOW() + INTERVAL 20 DAYS),
-    ;
+    (0, "thumbnail_url_13", "Charity Run", "Run for a cause", "Participate in a charity run to support a noble cause and make a difference.", "manager", "event", "234 Charity St", "1112223333", 10002, 10002, NOW() + INTERVAL 20 DAYS);
 
 -- Insert mock data into comments table
 INSERT INTO comments (content, reply_to)
