@@ -1,0 +1,27 @@
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  height: 100%;
+}
+
+nav {
+  position: sticky;
+  top: 0px;
+  .nav-item {
+    padding: 0 25px;
+  }
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  /* background: red; */
+  color: white;
+}

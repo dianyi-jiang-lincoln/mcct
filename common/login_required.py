@@ -1,5 +1,5 @@
 ###############################
-### Dianyi Jiang            ###
+### MCCT                    ###
 ###############################
 
 from functools import wraps

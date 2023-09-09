@@ -2,7 +2,7 @@
 name = "login"
 version = "0.1.0"
 description = ""
-authors = ["Dianyi Jiang  <dianyi.jiang@lincolnuni.ac.nz>"]
+authors = ["MCCT          <dianyi.jiang@lincolnuni.ac.nz>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]

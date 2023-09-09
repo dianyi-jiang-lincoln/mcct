@@ -12,5 +12,8 @@
   "[python]": {
     "editor.tabSize": 4
   },
+  "[css]": {
+    "editor.tabSize": 2
+  },
   "editor.insertSpaces": true
 }

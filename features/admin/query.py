@@ -1,5 +1,5 @@
 ###############################
-### Dianyi Jiang            ###
+### MCCT                    ###
 ###############################
 
 # def a function  which can return a SQL
