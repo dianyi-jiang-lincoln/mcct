@@ -9,6 +9,7 @@
   <head>
     <meta charset="utf-8" />
     <title>{% block head_title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- CSS only -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -24,105 +25,113 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{url_for('.static', filename='css/body.css')}}"
+      href="{{url_for('.static', filename='css/app.css')}}"
     />
   </head>
 
   <body>
-    {% block nav %}{% endblock %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img
-            src="/static/image/mcct_long_logo01.png"
-            alt="Logo"
-            width="300px"
-            height="90px"
-            class="d-inline-block align-text-top"
-          />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
-                <span class="text-center">Home Page</span>
-                <span class="text-center" style="display: block">首页</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
-                <span class="text-center">About Us</span>
-                <span class="text-center" style="display: block">关于我们</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
-                <span class="text-center">Projects</span>
-                <span class="text-center" style="display: block">社区项目</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
-                <span class="text-center">News & Events</span>
-                <span class="text-center" style="display: block">新闻活动</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <section class="content">
-      {% for category, message in get_flashed_messages(with_categories=true) %}
-      <br />
-      {% if category == "warning" %}
-      <div class="alert alert-warning alert-dismissible fade show">
-        {{ message }}
-      </div>
-      {% elif category == "error" %}
-      <div class="alert alert-danger alert-dismissible fade show">
-        {{ message }}
-      </div>
-      {% else %}
-      <!--Info-->
-      <div class="alert alert-success alert-dismissible fade show">
-        {{ message }}
-      </div>
-      {% endif %} {% endfor %}
-      <section>{% block content %}{% endblock %}</section>
-    </section>
+    <div id="app">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <img
+                src="/static/image/mcct_long_logo01.png"
+                alt="Logo"
+                width="300px"
+                height="90px"
+                class="d-inline-block align-text-top"
+              />
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">
+                    <span class="text-center">Home Page</span>
+                    <span class="text-center" style="display: block">首页</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">
+                    <span class="text-center">About Us</span>
+                    <span class="text-center" style="display: block"
+                      >关于我们</span
+                    >
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">
+                    <span class="text-center">Projects</span>
+                    <span class="text-center" style="display: block"
+                      >社区项目</span
+                    >
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">
+                    <span class="text-center">News & Events</span>
+                    <span class="text-center" style="display: block"
+                      >新闻活动</span
+                    >
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
 
-    <footer class="py-3 my-4">
-      <div class="footer_top">
-        <div class="footer_top_left">
-          <p><i class="bi bi-telephone-fill"></i> +64 6 3562629</p>
-          <p><i class="bi bi-phone-fill"></i> +64 27 8819818</p>
-          <p><i class="bi bi-envelope-at-fill"></i> mccttrust@gmail.com</p>
-          <p><i class="bi bi-wechat"></i> Wen631090</p>
-          <p><i class="bi bi-facebook"></i> Mcct Trust</p>
-          <p><i class="bi bi-globe2"></i> www.manawatuchinese.org.nz</p>
+      <main class="content">
+        {% for category, message in get_flashed_messages(with_categories=true)
+        %}
+        <br />
+        {% if category == "warning" %}
+        <div class="alert alert-warning alert-dismissible fade show">
+          {{ message }}
         </div>
-        <div class="footer_top_right">
-          <ul>
-            <li>Home Page</li>
-            <li>About Us</li>
-            <li>Projects</li>
-            <li>News & Events</li>
-          </ul>
+        {% elif category == "error" %}
+        <div class="alert alert-danger alert-dismissible fade show">
+          {{ message }}
         </div>
-      </div>
+        {% else %}
+        <!--Info-->
+        <div class="alert alert-success alert-dismissible fade show">
+          {{ message }}
+        </div>
+        {% endif %} {% endfor %}
+        <section>{% block content %}{% endblock %}</section>
+      </main>
 
-      <div class="footer_bottom">© Copyright 2023</div>
-    </footer>
+      <footer>
+        <div class="footer_top">
+          <div class="footer_top_left">
+            <p><i class="bi bi-telephone-fill"></i> +64 6 3562629</p>
+            <p><i class="bi bi-phone-fill"></i> +64 27 8819818</p>
+            <p><i class="bi bi-envelope-at-fill"></i> mccttrust@gmail.com</p>
+            <p><i class="bi bi-wechat"></i> Wen631090</p>
+            <p><i class="bi bi-facebook"></i> Mcct Trust</p>
+            <p><i class="bi bi-globe2"></i> <a href="http://www.manawatuchinese.org.nz"></a>www.manawatuchinese.org.nz</p>
+          </div>
+          <div class="footer_top_right">
+            <i class="bi bi-envelope-at-fill"></i>
+            <i class="bi bi-facebook"></i>
+            <i class="bi bi-linkedin"></i>
+            <i class="bi bi-youtube"></i>
+          </div>
+        </div>
+        <div class="footer_bottom">© Copyright 2023</div>
+      </footer>
+    </div>
   </body>
 </html>
