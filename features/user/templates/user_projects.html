@@ -18,122 +18,249 @@
   type="text/css"
   href="{{url_for('user.static', filename='css/user.css')}}"
 />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('user.static', filename='css/projects.css')}}"
+/>
 {% endblock %}
 
 <!-- content -->
 
 {% block content %}
 <section class="content">
-  <!-- Carousel -->
-  <div id="demo" class="carousel slide" data-bs-ride="carousel">
-    <!-- Indicators/dots -->
-    <div class="carousel-indicators">
-      <button
-        type="button"
-        data-bs-target="#demo"
-        data-bs-slide-to="0"
-        class="active"
-      ></button>
-      <button
-        type="button"
-        data-bs-target="#demo"
-        data-bs-slide-to="1"
-      ></button>
-      <button
-        type="button"
-        data-bs-target="#demo"
-        data-bs-slide-to="2"
-      ></button>
-    </div>
-
-    <!-- The slideshow/carousel -->
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img
-          src="{{url_for('user.static', filename='image/bannerlogo.bef81a68.png')}}"
-          alt="placeholder"
-          class="d-block"
-          style="width: 100%; height: 625px"
-        />
+  <div class="container">
+    <span class="title">Projects</span>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="false"
+            aria-controls="collapseOne"
+          >
+            Chinese Festival Food and Cooking Demonstration
+          </button>
+        </h2>
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingOne"
+          aria-expanded="false"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <div
+              role="tabpanel"
+              id="pane-0"
+              aria-labelledby="tab-0"
+              class="el-tab-pane"
+            >
+              <p class="justify_align"></p>
+                Here are the dates of the main Chinese traditional festivals
+                throughout 2023, along with some traditional foods that people
+                consume during each festival:
+              </p>
+              <strong>
+                <i class="iconfont icon-shichanghuodong"></i>Chinese New Year
+                (Spring Festival): February 1-15, 2023
+              </strong>
+              <ul>
+                <li>Tang Yuan (sweet rice balls)</li>
+                <li>Glutinous rice cakes (Nian Gao)</li>
+                <li>Spring rolls (Chun Juan)</li>
+                <li>Sweet rice balls (Tang Yuan)</li>
+              </ul>
+              <strong>
+                <i class="iconfont icon-shichanghuodong"></i>Lantern Festival:
+                February 16, 2023
+              </strong>
+              <ul>
+                <li>Dumplings (Jiaozi)</li>
+                <li>Yuan Xiao (glutinous rice balls)</li>
+              </ul>
+              <strong>
+                <i class="iconfont icon-shichanghuodong"></i>Qingming Festival
+                (Tomb Sweeping Day): April 4, 2023
+              </strong>
+              <ul>
+                <li>Qingming cake (Qingming Bing)</li>
+              </ul>
+              <strong>
+                <i class="iconfont icon-shichanghuodong"></i>Dragon Boat
+                Festival: June 2, 2023
+              </strong>
+              <ul>
+                <li>Zongzi (sticky rice dumplings)</li>
+                <li>Rice wine (Xionghuangjiu)</li>
+                <li>Salted eggs</li>
+              </ul>
+              <strong>
+                <i class="iconfont icon-shichanghuodong"></i>Mid-Autumn Festival
+                (Moon Festival): September 10, 2023
+              </strong>
+              <ul>
+                <li>Mooncakes (Yue Bing)</li>
+                <li>Osmanthus jelly (Gui Hua Gao)</li>
+                <li>Pomelos (Youzi)</li>
+              </ul>
+              <strong>
+                <i class="iconfont icon-shichanghuodong"></i>Double Ninth
+                Festival: October 28, 2023
+              </strong>
+              <ul>
+                <li>Chongyang cake (Chongyang Gao)</li>
+                <li>Chrysanthemum tea (Ju Hua Cha)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="carousel-item">
-        <img
-          src="{{url_for('user.static', filename='image/bannerlogo.bef81a68.png')}}"
-          alt="placeholder"
-          class="d-block"
-          style="width: 100%; height: 625px"
-        />
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo"
+            aria-expanded="false"
+            aria-controls="collapseTwo"
+          >
+            Chinese Health and Wellbeing
+          </button>
+        </h2>
+        <div
+          id="collapseTwo"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingTwo"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <p><strong>Chinese Health and Wellbeing</strong></p>
+            <p>
+              This programme is designed to help the new comers of students,
+              elders and Chinese families in our community to cope with their
+              live in New Zealand; help with their physically and
+              psychologically access to the society. Strengthening the community
+              connectedness, improve social wellbeing, which then will increase
+              our social amenity and build up a stronger bond. Enhance a
+              stronger relationship between individuals also with other ethnic
+              groups and local community.
+            </p>
+            <p>
+              Monthly gatherings for workshops, seminars etc. gathering of
+              different Chinese groups in Palmerston North, to share information
+              and social with each other. Introductions on New Zealand's
+              policies on health systems, social well-being and spreading
+              information on social benefits and health services.
+            </p>
+            <p>
+              Invite experts and or specialists from China and other cities as
+              well of New Zealand, play visits to the community, give free
+              consultations on traditional Chinese Medicines related to health
+              and wellbeing in Chinese Language.
+            </p>
+            <p>
+              Visit households consists of elder people frequently, get to know
+              them and what their needs are. Also we will help them to make
+              appointments with GP, and bring them to medical centre if needed.
+            </p>
+            <p>
+              In contact with the Massey university Chinese Student Association.
+              Our plan with the students are considered in four main aspects.
+              Firstly help them with their English and communication skill,
+              which encourage them to blend into the study environment soonest
+              possible; secondly provide transportation for social activities if
+              needed, even organizing social activities for the students,
+              especially on traditional festivals. Thirdly, assist them if they
+              are in trouble, such as needed medical attention, or violation
+              towards their human body or human right. Fourthly, educate and
+              advertise how the social network in New Zealand works, and
+              providing information regarding all aspect of this country.
+            </p>
+            <p>
+              Keep working on supporting the finding of a Chinese GP in
+              Palmerston North. And always be there to help with the
+              establishment of a Chinese herb shop or wellbeing services
+              business, if such opportunity presented.
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="carousel-item">
-        <img
-          src="{{url_for('user.static', filename='image/bannerlogo.bef81a68.png')}}"
-          alt="placeholder"
-          class="d-block"
-          style="width: 100%; height: 625px"
-        />
-      </div>
-    </div>
-
-    <!-- Left and right controls/icons -->
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#demo"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#demo"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon"></span>
-    </button>
-  </div>
-  <div class="intro">
-    <div class="title_box">
-      <span class="title">VIEW FROM THE CHAIR</span>
-    </div>
-    <div class="title_content col-6 row container">
-      <img
-        src="{{url_for('user.static', filename='image/img01.42d12bee.jpg')}}"
-        alt="placeholder"
-        class="col"
-        style="width: 400px; height: 546px"
-      />
-      <div class="col">
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseThree"
+            aria-expanded="false"
+            aria-controls="collapseThree"
+          >
+          Celebrating Chinese Festivals
+          </button>
+        </h2>
+        <div
+          id="collapseThree"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingThree"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <p><strong>Celebrating Chinese Festivals</strong></p>
+            <ul class="justify_align">
+              <li>
+                <i class="iconfont icon-shichanghuodong"></i
+                ><strong>Chinese New Year</strong> Concert to be held in the 1st
+                Chinese lunar month every year-Spring Festival, which normally
+                falls in Februarys.
+              </li>
+              <li>
+                <i class="iconfont icon-shichanghuodong"></i
+                ><strong>Lantern Festival</strong>, the 15th day of 1st lunar
+                month. Lantern parade and lion dance celebrating the first full
+                moon.
+              </li>
+              <li>
+                <i class="iconfont icon-shichanghuodong"></i
+                ><strong>Qing Ming</strong>, Tomb Sweeping Day, a time for
+                people to go outside and enjoy the greenery of springtime
+                (treading on the greenery) and tend to the graves of departed
+                ones.
+              </li>
+              <li>
+                <i class="iconfont icon-shichanghuodong"></i
+                ><strong>Duan wu Festival</strong>, 5th day of 5th lunar month,
+                people eat dumplings wrapped in lotus leaves. Dragon boat race
+                is also referred as one of a symbols of Chinese traditional
+                sports.
+              </li>
+              <li>
+                <i class="iconfont icon-shichanghuodong"></i
+                ><strong>The Mid-Autumn (Moon) Festival</strong> is the second
+                important day in the Chinese calendar. Farmers celebrate the
+                harvesting season on this date. Family members and friends will
+                gather to admire the harvest moon, eat moon cakes. A full moon
+                is a symbol of peace and prosperity for the whole.
+              </li>
+              <li>
+                <i class="iconfont icon-shichanghuodong"></i>Exhibition can be
+                hold by the meaning of showing different talents from the whole
+                community. Information about different diversify that community
+                members can enhance the understanding and awareness in the
+                community.
+              </li>
+              <li>
+                <i class="iconfont icon-shichanghuodong"></i>Volunteer work with
+                the combination of community members and students to enhance the
+                connection about each other.
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

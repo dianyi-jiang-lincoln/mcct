@@ -18,122 +18,112 @@
   type="text/css"
   href="{{url_for('user.static', filename='css/user.css')}}"
 />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('user.static', filename='css/aboutus.css')}}"
+/>
 {% endblock %}
 
 <!-- content -->
 
 {% block content %}
 <section class="content">
-  <!-- Carousel -->
-  <div id="demo" class="carousel slide" data-bs-ride="carousel">
-    <!-- Indicators/dots -->
-    <div class="carousel-indicators">
-      <button
-        type="button"
-        data-bs-target="#demo"
-        data-bs-slide-to="0"
-        class="active"
-      ></button>
-      <button
-        type="button"
-        data-bs-target="#demo"
-        data-bs-slide-to="1"
-      ></button>
-      <button
-        type="button"
-        data-bs-target="#demo"
-        data-bs-slide-to="2"
-      ></button>
-    </div>
-
-    <!-- The slideshow/carousel -->
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img
-          src="{{url_for('user.static', filename='image/bannerlogo.bef81a68.png')}}"
-          alt="placeholder"
-          class="d-block"
-          style="width: 100%; height: 625px"
-        />
+  <div class="container">
+    <span class="title">About Us</span>
+    <div class="d-flex align-items-start">
+      <div
+        class="nav flex-column nav-pills me-3"
+        id="v-pills-tab"
+        role="tablist"
+        aria-orientation="vertical"
+      >
+        <button
+          class="nav-link active"
+          id="v-pills-1-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#v-pills-1"
+          type="button"
+          role="tab"
+          aria-controls="v-pills-1"
+          aria-selected="true"
+        >
+          Introduction
+        </button>
+        <button
+          class="nav-link"
+          id="v-pills-2-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#v-pills-2"
+          type="button"
+          role="tab"
+          aria-controls="v-pills-2"
+          aria-selected="false"
+        >
+          Trustees
+        </button>
       </div>
-      <div class="carousel-item">
-        <img
-          src="{{url_for('user.static', filename='image/bannerlogo.bef81a68.png')}}"
-          alt="placeholder"
-          class="d-block"
-          style="width: 100%; height: 625px"
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          src="{{url_for('user.static', filename='image/bannerlogo.bef81a68.png')}}"
-          alt="placeholder"
-          class="d-block"
-          style="width: 100%; height: 625px"
-        />
-      </div>
-    </div>
-
-    <!-- Left and right controls/icons -->
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#demo"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#demo"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon"></span>
-    </button>
-  </div>
-  <div class="intro">
-    <div class="title_box">
-      <span class="title">VIEW FROM THE CHAIR</span>
-    </div>
-    <div class="title_content col-6 row container">
-      <img
-        src="{{url_for('user.static', filename='image/img01.42d12bee.jpg')}}"
-        alt="placeholder"
-        class="col"
-        style="width: 400px; height: 546px"
-      />
-      <div class="col">
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
+      <div class="tab-content" id="v-pills-tabContent">
+        <div
+          class="tab-pane fade show active"
+          id="v-pills-1"
+          role="tabpanel"
+          aria-labelledby="v-pills-1-tab"
+        >
+          <p>
+            Manawatu Chinese Community Trust (here after refer to as “The
+            Trust”) is an incorporated charity trust which is set up to promote
+            Chinese cultural identity and provide a comprehensive service to the
+            entire Chinese communities in Manawatu region . The Trust is based
+            on Palmerston North. It aims to build up Chinese networks; promote a
+            great Chinese heritage; encourage the cultural and language
+            maintenance; strengthen Chinese unity and mutual support; share
+            fundamental cultural values, languages, traditions with the people
+            from other cultures in New Zealand. It provides facilities, research
+            and learning opportunities to the community enhancing their pleasant
+            existence and the contributions to the multi-cultural civilization
+            of New Zealand. We organise cultural events around the year in which
+            Chinese culture is celebrated; Participate in various culture
+            activities hosted by local city council, ethnic center and other
+            community organisations in which the cultural diversity is promoted
+            and where we learn from, enjoy and grow in understanding of each
+            other.
+          </p>
+          <p>
+            马那瓦图华人社区信托（以下简称“信托”）是一家旨在促进华人文化认同并为马那瓦土地区整个华人社区提供全面服务的法人慈善信托。
+            信托基金以北帕默斯顿为基地。它旨在建立中国网络；弘扬伟大的中国传统；鼓励保持文化和语言；加强中国的团结和相互支持；与新西兰其他文化的人分享基本的文化价值观、语言和传统。
+            它为社区提供了设施、研究和学习机会，增强了他们的愉快生活，并为新西兰的多元文化文明做出了贡献。
+            我们每年都会组织文化活动来庆祝中国文化；参加由当地市议会、民族中心和其他社区组织主办的各种文化活动，在这些活动中，文化多样性得到了促进，我们在相互学习、享受和了解中成长。
+          </p>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="v-pills-2"
+          role="tabpanel"
+          aria-labelledby="v-pills-2-tab"
+        >
+          <div class="card-group">
+            {% set trusteeList = [1,2,3,4,5] %} {% for trustee in trusteeList %}
+            <div class="col-sm-3">
+              <div class="card">
+                <img
+                  class="card-img-top"
+                  src="data:image/jpeg;base64,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"
+                  alt="profile"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Special title treatment</h5>
+                  <p class="card-text">
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1"></div>
+            {% endfor %}
+          </div>
+        </div>
       </div>
     </div>
   </div>

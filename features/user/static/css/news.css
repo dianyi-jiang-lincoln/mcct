@@ -1,0 +1,22 @@
+.news-item {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.news-image {
+  width: 250px;
+  height: 200px;
+  margin-right: 10px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.news-body {
+  margin-left: 10px;
+  flex: 2;
+  margin-bottom: 20px;
+}

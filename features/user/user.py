@@ -50,4 +50,12 @@ def projects():
 
 @user.route("/news")
 def news():
-    return render_template(f"user_news.html")
+    newsList = db.sql_exec_with_connection(
+        query=query.get_news(), callback=db.get_mapped_titles_rows
+    )
+
+    eventList = db.sql_exec_with_connection(
+        query=query.get_events(), callback=db.get_mapped_titles_rows
+    )
+
+    return render_template(f"user_news.html", newsList=newsList, eventList=eventList)

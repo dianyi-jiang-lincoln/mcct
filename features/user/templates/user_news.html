@@ -18,56 +18,101 @@
   type="text/css"
   href="{{url_for('user.static', filename='css/user.css')}}"
 />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('user.static', filename='css/news.css')}}"
+/>
 {% endblock %}
 
 <!-- content -->
 
 {% block content %}
 <section class="content">
-  <!-- Carousel -->
-  <div class="intro">
-    <div class="title_box">
-      <span class="title">VIEW FROM THE CHAIR</span>
-    </div>
-    <div class="title_content col-6 row container">
-      <img
-        src="{{url_for('user.static', filename='image/img01.42d12bee.jpg')}}"
-        alt="placeholder"
-        class="col"
-        style="width: 400px; height: 546px"
-      />
-      <div class="col">
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
-        <p>
-          In 2006 when we applied to the New Zealand government to register as a
-          non-profit charitable community trust, we were a group of new
-          immigrants from mainland China arriving after 1990's. We speak
-          mandarin.
-        </p>
+  <div class="container" style="max-width: 900px">
+    <!-- <span class="title">News & Events</span> -->
+    <ul
+      class="nav nav-tabs"
+      id="myTab"
+      role="tablist"
+      style="padding-top: 3rem"
+    >
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="home-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#home"
+          type="button"
+          role="tab"
+          aria-controls="home"
+          aria-selected="true"
+        >
+          News
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="profile-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#profile"
+          type="button"
+          role="tab"
+          aria-controls="profile"
+          aria-selected="false"
+        >
+          Events
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade show active"
+        id="home"
+        role="tabpanel"
+        aria-labelledby="home-tab"
+      >
+        {% for news in newsList %}
+        <div class="g-0 news-item">
+          <div class="news-image">
+            <img src="{{news.thumbnail_url}}" class="img-fluid rounded-start" />
+          </div>
+          <div class="card-body news-body">
+            <h5 class="card-title">{{news.title}}</h5>
+            <p class="card-text">
+              <small class="text-muted">{{news.updated_at}}</small>
+            </p>
+            <p class="card-text">{{news.preview}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div
+        class="tab-pane fade"
+        id="profile"
+        role="tabpanel"
+        aria-labelledby="profile-tab"
+      >
+        {% for event in eventList %}
+        <div class="g-0 news-item">
+          <div class="news-image">
+            <img
+              src="{{event.thumbnail_url}}"
+              class="img-fluid rounded-start"
+            />
+          </div>
+          <div class="card-body news-body">
+            <h5 class="card-title">{{event.title}}</h5>
+            <p class="card-text">
+              <small class="text-muted">{{event.updated_at}}</small>
+            </p>
+            <p class="card-text">{{event.preview}}</p>
+          </div>
+        </div>
+        {% endfor %}
       </div>
     </div>
+  </div>
 </section>
 {% endblock %}
