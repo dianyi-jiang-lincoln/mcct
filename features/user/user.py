@@ -16,7 +16,14 @@ from common.user import *
 from db import db
 import features.user.query as query
 
-user = Blueprint("user", __name__, template_folder="templates")
+user = Blueprint(
+    "user",
+    __name__,
+    template_folder="templates",
+    static_folder="static",
+    static_url_path="/static/user",
+)
+
 
 @user.route("/dashboard")
 @user_login_required
@@ -24,3 +31,23 @@ def dashboard():
     currentUser = current_user()
     name = currentUser.name
     return render_template(f"user_dashboard.html", name=name)
+
+
+@user.route("/home")
+def home():
+    return render_template(f"user_home.html")
+
+
+@user.route("/aboutus")
+def aboutus():
+    return render_template(f"user_aboutus.html")
+
+
+@user.route("/projects")
+def projects():
+    return render_template(f"user_projects.html")
+
+
+@user.route("/news")
+def news():
+    return render_template(f"user_news.html")

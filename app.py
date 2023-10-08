@@ -36,7 +36,7 @@ currentUser = None
 def home():
     # db.sql_exec_with_connection(query=query.test(), callback=db.get_mapped_titles_rows)
     db.sql_exec_with_connection(query=query.test(), callback=db.get_mapped_titles_rows)
-    return render_template(f"index.html")
+    return redirect(url_for(f"user.home"))
 
 
 @app.route("/admin")

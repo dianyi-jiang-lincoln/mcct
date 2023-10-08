@@ -1,0 +1,73 @@
+<!--
+###############################
+### MCCT                    ###
+###############################
+-->
+
+{% extends "base.html" %}
+
+<!-- title -->
+
+{% block head_title %} {{title or "News"}} {% endblock %}
+
+<!-- style -->
+
+{% block head_styles %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{url_for('user.static', filename='css/user.css')}}"
+/>
+{% endblock %}
+
+<!-- content -->
+
+{% block content %}
+<section class="content">
+  <!-- Carousel -->
+  <div class="intro">
+    <div class="title_box">
+      <span class="title">VIEW FROM THE CHAIR</span>
+    </div>
+    <div class="title_content col-6 row container">
+      <img
+        src="{{url_for('user.static', filename='image/img01.42d12bee.jpg')}}"
+        alt="placeholder"
+        class="col"
+        style="width: 400px; height: 546px"
+      />
+      <div class="col">
+        <p>
+          In 2006 when we applied to the New Zealand government to register as a
+          non-profit charitable community trust, we were a group of new
+          immigrants from mainland China arriving after 1990's. We speak
+          mandarin.
+        </p>
+        <p>
+          In 2006 when we applied to the New Zealand government to register as a
+          non-profit charitable community trust, we were a group of new
+          immigrants from mainland China arriving after 1990's. We speak
+          mandarin.
+        </p>
+        <p>
+          In 2006 when we applied to the New Zealand government to register as a
+          non-profit charitable community trust, we were a group of new
+          immigrants from mainland China arriving after 1990's. We speak
+          mandarin.
+        </p>
+        <p>
+          In 2006 when we applied to the New Zealand government to register as a
+          non-profit charitable community trust, we were a group of new
+          immigrants from mainland China arriving after 1990's. We speak
+          mandarin.
+        </p>
+        <p>
+          In 2006 when we applied to the New Zealand government to register as a
+          non-profit charitable community trust, we were a group of new
+          immigrants from mainland China arriving after 1990's. We speak
+          mandarin.
+        </p>
+      </div>
+    </div>
+</section>
+{% endblock %}
