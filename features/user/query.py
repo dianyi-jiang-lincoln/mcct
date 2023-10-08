@@ -37,3 +37,15 @@ def get_events():
         f"WHERE visible_start < NOW() AND type = 'event'"
         f"LIMIT 50 "
     )
+
+
+def get_trustee():
+    return (
+        f"SELECT "
+        f"mcct_role, "
+        f"firstname, "
+        f"lastname "
+        f"FROM `users` "
+        f"WHERE mcct_role is NOT NULL "
+        f"ORDER BY id"
+    )

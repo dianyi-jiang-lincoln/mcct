@@ -40,7 +40,10 @@ def home():
 
 @user.route("/aboutus")
 def aboutus():
-    return render_template(f"user_aboutus.html")
+    trusteeList = db.sql_exec_with_connection(
+        query=query.get_trustee(), callback=db.get_mapped_titles_rows
+    )
+    return render_template(f"user_aboutus.html", trusteeList=trusteeList)
 
 
 @user.route("/projects")
