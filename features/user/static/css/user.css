@@ -5,3 +5,12 @@
   text-align: center;
   padding-bottom: 3rem;
 }
+.carousel-control-prev {
+  height: 100%;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: lightblue;
+  padding: 50px;
+  opacity: 0.5;
+}
